@@ -6,6 +6,7 @@ import cv2
 import numpy as np
 import theano
 from keras.models import model_from_json
+from tqdm import tqdm
 
 theano.config.openmp = True
 
@@ -25,7 +26,7 @@ def load_model():
 def test():
     model = load_model()
 
-    for path in sorted(glob(osp.join(sys.argv[1], "**", "*.jpg"))):
+    for path in tqdm(sorted(glob(osp.join(sys.argv[1], "**", "*.jpg")))):
         print(path)
 
         src = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
