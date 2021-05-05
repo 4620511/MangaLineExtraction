@@ -26,7 +26,8 @@ def load_model():
 def test():
     model = load_model()
 
-    for path in tqdm(sorted(glob(osp.join(sys.argv[1], "**", "*.jpg")))):
+    paths = sorted(glob(osp.join(sys.argv[1], "**", "*.jpg"), recursive=True))
+    for path in tqdm(paths):
         print(path)
 
         src = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
